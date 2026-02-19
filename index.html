@@ -101,12 +101,21 @@
         .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .details-col h4 { font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; margin-bottom: 10px; }
         .details-col p, .details-col li { color: var(--text-secondary); font-size: 0.95rem; }
+.project-image-container {
+    padding: 20px; /* Provides consistent "breathing room" around your visuals */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
-        .project-image-container {
-            background: var(--placeholder-bg); border-left: 1px solid var(--card-border);
-            display: flex; align-items: center; justify-content: center; position: relative;
-        }
-        .project-image-container img { width: 100%; height: 100%; object-fit: cover; }
+.project-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensures the full UI/Project visual is seen */
+    border-radius: 12px; /* Optional: rounds the corners of your screenshots */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Optional: makes images "pop" */
+}
 
 
         /* EXPERIENCE */
@@ -240,7 +249,7 @@
                 </p>
             </div>
             <div class="headshot-container">
-            <img src="./images/selfie!.png" alt="Ruby Gould" style="width: 50%; ">
+            <img src="./images/selfie!.png" alt="Ruby Gould" >
             </div>
         </header>
 
@@ -274,7 +283,7 @@
     </div>
 
     <div class="project-image-container">
-        <img src="./images/iPadReel.png" alt="Reels on iPad" class="fill-space">
+        <img src="./images/iPadReel.png" alt="Reels on iPad" >
     </div>
 </article>
 
@@ -302,7 +311,7 @@
     </div>
 
     <div class="project-image-container">
-        <img src="./images/AIMode.png" alt="Reels on iPad" class="fill-space">
+        <img src="./images/AIMode.png" alt="Reels on iPad" >
     </div>
 </article>
 
@@ -335,7 +344,7 @@
     </div>
 
     <div class="project-image-container">
-        <img src="./images/iPR.png" alt="Reels on iPad" class="fill-space">
+        <img src="./images/iPR.png" alt="Reels on iPad" >
     </div>
 </article>
 
