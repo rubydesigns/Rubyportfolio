@@ -108,7 +108,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px; /* This creates a 'safe zone' so your UI mockups don't touch the edges */
+    padding: 100px; /* This creates a 'safe zone' so your UI mockups don't touch the edges */
     min-height: 400px; /* Ensures the container is tall enough to show the image */
 }
 
@@ -116,12 +116,11 @@
     /* The Magic Sauce: */
     max-width: 100%; 
     max-height: 100%;
-    width: fill;   /* Maintains aspect ratio */
+    width: auto;   /* Maintains aspect ratio */
     height: auto;  /* Maintains aspect ratio */
     object-fit: contain; 
     
     /* Aesthetics to make the UI mockups look professional */
-    border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
