@@ -163,12 +163,11 @@
     /*EXPERIENCE SECTION STYLING */
 .exp-item {
     background: var(--card-bg);
-    padding: 48px; /* Slightly more internal padding for a premium feel */
-    border-radius: 32px; /* Matching the project card radius for consistency */
+    padding: 48px;
+    border-radius: 32px;
     border: 1px solid var(--card-border);
-    margin-bottom: 60px; /* Increased from 30px for better separation on desktop */
     backdrop-filter: var(--card-blur);
-    transition: background 0.3s ease;
+    margin-bottom: 0; /* Resetting this */
 }
 
 .exp-header {
@@ -211,6 +210,13 @@
     border: 1px solid rgba(255,255,255,0.1);
     align-self: flex-start;
 }
+/* Container for all experience items */
+.exp-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Adjust this number to manually set the desktop spacing */
+    margin-top: 20px;
+}
 
 .exp-summary {
     color: var(--text-secondary);
@@ -220,15 +226,14 @@
     border-left: 2px solid rgba(255, 255, 255, 0.2);
     max-width: 900px;
 }
-    /* Removes extra margin on the last item */
-.exp-item:last-child {
-    margin-bottom: 0;
-}
+   
 
-/* Mobile tweak to keep spacing balanced on small screens */
+/* Mobile: tighter spacing for smaller screens */
 @media (max-width: 900px) {
+    .exp-wrapper {
+        gap: 40px; 
+    }
     .exp-item {
-        margin-bottom: 40px;
         padding: 32px 24px;
     }
 }
