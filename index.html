@@ -101,22 +101,29 @@
         .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .details-col h4 { font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; margin-bottom: 10px; }
         .details-col p, .details-col li { color: var(--text-secondary); font-size: 0.95rem; }
+
+    /* 2. Project Image Fix: Large but Never Cropped */
 .project-image-container {
-    padding: 20px; /* Provides consistent "breathing room" around your visuals */
+    background: var(--placeholder-bg);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    padding: 30px; /* This creates a 'safe zone' so your UI mockups don't touch the edges */
+    min-height: 400px; /* Ensures the container is tall enough to show the image */
 }
 
 .project-image-container img {
-    max-width: 100%;
+    /* The Magic Sauce: */
+    max-width: 100%; 
     max-height: 100%;
-    object-fit: contain; /* Ensures the full UI/Project visual is seen */
-    border-radius: 12px; /* Optional: rounds the corners of your screenshots */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Optional: makes images "pop" */
+    width: auto;   /* Maintains aspect ratio */
+    height: auto;  /* Maintains aspect ratio */
+    object-fit: contain; 
+    
+    /* Aesthetics to make the UI mockups look professional */
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
-
 
         /* EXPERIENCE */
         .exp-item {
@@ -283,7 +290,7 @@
     </div>
 
     <div class="project-image-container">
-        <img src="./images/iPadReel.png" alt="Reels on iPad" style="width: 50%; ">
+        <img src="./images/iPadReel.png" alt="Reels on iPad" >
     </div>
 </article>
 
@@ -311,7 +318,7 @@
     </div>
 
     <div class="project-image-container">
-        <img src="./images/AIMode.png" alt="Reels on iPad" style="width: 50%; ">
+        <img src="./images/AIMode.png" alt="Reels on iPad" >
     </div>
 </article>
 
@@ -344,7 +351,7 @@
     </div>
 
     <div class="project-image-container">
-        <img src="./images/iPR.png" alt="Reels on iPad" style="width: 50%; ">
+        <img src="./images/iPR.png" alt="Reels on iPad" >
     </div>
 </article>
 
