@@ -162,11 +162,12 @@
     /*EXPERIENCE SECTION STYLING */
 .exp-item {
     background: var(--card-bg);
-    padding: 40px;
-    border-radius: 24px;
+    padding: 48px; /* Slightly more internal padding for a premium feel */
+    border-radius: 32px; /* Matching the project card radius for consistency */
     border: 1px solid var(--card-border);
-    margin-bottom: 30px;
+    margin-bottom: 60px; /* Increased from 30px for better separation on desktop */
     backdrop-filter: var(--card-blur);
+    transition: background 0.3s ease;
 }
 
 .exp-header {
@@ -218,13 +219,17 @@
     border-left: 2px solid rgba(255, 255, 255, 0.2);
     max-width: 900px;
 }
+    /* Removes extra margin on the last item */
+.exp-item:last-child {
+    margin-bottom: 0;
+}
 
-/* MOBILE ADJUSTMENT */
-@media (max-width: 600px) {
-    .exp-item { padding: 30px 20px; }
-    .exp-header { flex-direction: column; gap: 12px; }
-    .exp-title-group { min-width: 100%; }
-    .exp-date { order: -1; } /* Moves date above the title on small screens, or remove this line to keep it below */
+/* Mobile tweak to keep spacing balanced on small screens */
+@media (max-width: 900px) {
+    .exp-item {
+        margin-bottom: 40px;
+        padding: 32px 24px;
+    }
 }
 
         /* Contact Section */
