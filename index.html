@@ -102,23 +102,42 @@
         .details-col h4 { font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; margin-bottom: 10px; }
         .details-col p, .details-col li { color: var(--text-secondary); font-size: 0.95rem; }
 
-    /* 2. Project Image Fix: Large but Never Cropped */
+    /* Update the container to ensure it doesn't crop the image */
 .project-image-container {
     background: var(--placeholder-bg);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px; /* This creates a 'safe zone' so your UI mockups don't touch the edges */
-    min-height: 400px; /* Ensures the container is tall enough to show the image */
+    
+    /* Increased padding: 100px on sides, 60px on top/bottom */
+    padding: 60px 100px; 
+    
+    /* Important: set a minimum height so the container has enough vertical room */
+    min-height: 500px; 
+    position: relative;
+    overflow: hidden;
 }
 
+/* Update the image to be large but fully contained */
 .project-image-container img {
-    /* The Magic Sauce: */
-    max-width: 100%; 
+    /* Resets any absolute positioning that might be causing crops */
+    position: static; 
+    
+    /* Maximum constraints */
+    max-width: 100%;
     max-height: 100%;
-    width: auto;   /* Maintains aspect ratio */
-    height: auto;  /* Maintains aspect ratio */
+    
+    /* 'contain' ensures the top and bottom are NEVER cut off */
     object-fit: contain; 
+    
+    /* Maintains the original UI proportions */
+    width: auto;
+    height: auto;
+
+    /* Styling to make mockups look polished */
+    border-radius: 12px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+}
     
     /* Aesthetics to make the UI mockups look professional */
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
