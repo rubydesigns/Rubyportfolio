@@ -1,252 +1,1342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruby Gould | Senior Product Designer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #ffffff;
-            --text: #1f1f1f;
-            --accent: #1a73e8; /* Google Blue */
-            --secondary: #5f6368;
-            --card-bg: #f8f9fa;
-            --border: #e0e0e0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruby Gould — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
+  :root {
+    --grape: #5B3FA6;
+    --rose: #C13584;
+    --gold: #F4C542;
+    --cream: #FAF7F2;
+    --ink: #1A1020;
+    --ink-soft: #3D2B55;
+    --mist: rgba(250,247,242,0.06);
+    --grad: linear-gradient(135deg, #4A32A0 0%, #8B3A8A 50%, #C13584 100%);
+  }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+  html { scroll-behavior: smooth; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            z-index: 100;
-            border-bottom: 1px solid #eee;
-        }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-        .logo { font-weight: 600; font-size: 1.2rem; color: var(--accent); }
-        nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-        nav ul li { margin-left: 25px; }
-        nav a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; }
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 1.5px solid rgba(244,197,66,0.5);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+  }
+  body:hover .cursor { opacity: 1; }
+  a:hover ~ .cursor, button:hover ~ .cursor { width: 20px; height: 20px; }
 
-        header { padding: 120px 0 80px; text-align: center; }
-        header h1 { font-size: 3.5rem; margin: 0; font-weight: 600; }
-        .tagline { font-size: 1.5rem; color: var(--accent); margin: 10px 0 20px; }
-        .bio { max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: var(--secondary); }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(26,16,32,0.7);
+    border-bottom: 1px solid rgba(250,247,242,0.06);
+    transition: padding 0.3s ease;
+  }
+  nav.scrolled { padding: 18px 60px; }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
 
-        section { padding: 80px 0; border-bottom: 1px solid #f0f0f0; }
-        h2 { font-size: 2.2rem; margin-bottom: 40px; border-left: 4px solid var(--accent); padding-left: 15px; }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--grad);
+    opacity: 0.15;
+  }
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .hero-orb {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.25;
+    animation: orb-float 8s ease-in-out infinite;
+  }
+  .orb1 { background: #7B4FC9; top: -200px; left: -100px; }
+  .orb2 { background: #C13584; bottom: -200px; right: -100px; animation-delay: -4s; }
+  @keyframes orb-float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+  }
 
-        .project-grid { display: flex; flex-direction: column; gap: 60px; }
-        .project-card {
-            background: var(--card-bg);
-            padding: 50px;
-            border-radius: 24px;
-            border: 1px solid var(--border);
-        }
-        .project-card h3 { margin-top: 0; font-size: 2rem; color: var(--text); }
-        .impact-badge {
-            display: inline-block;
-            background: #e8f0fe;
-            color: var(--accent);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        
-        .project-section { margin-bottom: 25px; }
-        .project-section h4 { margin-bottom: 8px; font-size: 1.1rem; color: var(--text); }
-        .project-section p, .project-section li { color: var(--secondary); font-size: 1rem; }
-        .project-section ul { padding-left: 20px; }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 80px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fade-up 0.8s 0.2s forwards;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 6vw, 86px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: var(--cream);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fade-up 0.8s 0.35s forwards;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--cream);
+  }
+  .hero-bio {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(250,247,242,0.65);
+    max-width: 440px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fade-up 0.8s 0.5s forwards;
+  }
+  .hero-bio strong { color: var(--cream); font-weight: 400; }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    animation: fade-up 0.8s 0.65s forwards;
+  }
+  .btn {
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    cursor: none;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .btn-primary:hover { background: #fff; transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid rgba(250,247,242,0.25);
+    color: var(--cream);
+  }
+  .btn-ghost:hover { border-color: var(--cream); background: rgba(250,247,242,0.05); }
 
-        .experience-list { display: grid; gap: 30px; }
-        .exp-item { border-left: 2px solid #eee; padding-left: 25px; position: relative; }
-        .exp-item::before {
-            content: "";
-            position: absolute;
-            left: -6px;
-            top: 0;
-            width: 10px;
-            height: 10px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-        .exp-date { font-weight: 600; color: var(--accent); font-size: 0.9rem; }
-        .exp-title { font-size: 1.3rem; margin: 5px 0; }
-        .exp-desc { color: var(--secondary); margin: 0; }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(250,247,242,0.1);
+    opacity: 0;
+    animation: fade-up 0.8s 0.8s forwards;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.45);
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
 
-        footer { text-align: center; padding: 80px 20px; background: #fdfdfd; color: var(--secondary); font-size: 0.95rem; }
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 80px 80px 40px;
+    z-index: 2;
+  }
+  .hero-img-wrap {
+    position: relative;
+    opacity: 0;
+    animation: fade-scale 1s 0.4s forwards;
+  }
+  .hero-img-frame {
+    width: 380px;
+    height: 480px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    background: var(--grad);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(250,247,242,0.08);
+  }
+  .hero-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #5B3FA6 0%, #C13584 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: rgba(255,255,255,0.3);
+  }
+  .hero-img-deco {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 380px; height: 480px;
+    border: 1px solid rgba(244,197,66,0.3);
+    border-radius: 4px;
+    z-index: -1;
+  }
+  .role-badge {
+    position: absolute;
+    bottom: -24px;
+    left: -32px;
+    background: var(--ink);
+    border: 1px solid rgba(250,247,242,0.1);
+    padding: 18px 24px;
+    border-radius: 2px;
+    backdrop-filter: blur(10px);
+  }
+  .role-badge-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .role-badge-company {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--cream);
+  }
 
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            .project-card { padding: 30px; }
-            nav { padding: 15px 20px; }
-        }
-    </style>
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-scale {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* SECTION COMMONS */
+  section { position: relative; }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 64px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(250,247,242,0.08);
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--cream);
+  }
+  .section-title em {
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--cream);
+  }
+
+  /* TIMELINE */
+  #timeline {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--ink) 0%, #0F0A18 100%);
+  }
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 3px 1fr;
+    gap: 0 40px;
+    position: relative;
+  }
+  .timeline-line {
+    grid-column: 2;
+    background: linear-gradient(180deg, transparent, rgba(244,197,66,0.4), transparent);
+    position: relative;
+  }
+  .timeline-item {
+    padding: 40px 0;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .timeline-item.right {
+    transform: translateX(20px);
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .timeline-item.right { grid-column: 3; text-align: left; }
+  .timeline-item.left { grid-column: 1; text-align: right; }
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .timeline-company {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .timeline-role {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(250,247,242,0.5);
+    line-height: 1.5;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(244,197,66,0.15);
+  }
+
+  /* PROJECT SECTION */
+  #projects { padding: 120px 0; }
+  
+  .project-hero-card {
+    background: rgba(250,247,242,0.03);
+    border: 1px solid rgba(250,247,242,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .project-hero-card.visible { opacity: 1; transform: translateY(0); }
+  .project-hero-card:hover { border-color: rgba(244,197,66,0.2); }
+
+  .project-card-content {
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .project-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(250,247,242,0.05);
+    margin-bottom: -20px;
+    display: block;
+  }
+  .project-platform {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+  .project-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(250,247,242,0.6);
+    margin-bottom: 32px;
+  }
+  .project-metrics {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  .metric {
+    padding: 16px 0;
+    border-top: 1px solid rgba(250,247,242,0.1);
+  }
+  .metric-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-lbl {
+    font-size: 11px;
+    color: rgba(250,247,242,0.4);
+    letter-spacing: 0.05em;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+  .tag {
+    padding: 5px 14px;
+    border: 1px solid rgba(250,247,242,0.15);
+    border-radius: 1px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: rgba(250,247,242,0.5);
+  }
+  .project-card-visual {
+    background: var(--grad);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-card-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,16,32,0.1) 0%, rgba(26,16,32,0.4) 100%);
+  }
+  .mock-device {
+    width: 220px;
+    background: rgba(26,16,32,0.9);
+    border-radius: 24px;
+    border: 2px solid rgba(250,247,242,0.15);
+    padding: 20px 16px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .mock-device::before {
+    content: '';
+    display: block;
+    width: 60px; height: 6px;
+    background: rgba(250,247,242,0.1);
+    border-radius: 10px;
+    margin: 0 auto 16px;
+  }
+  .mock-screen {
+    width: 100%;
+    aspect-ratio: 9/16;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #1A1020 0%, #2D1A44 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 8px;
+    font-size: 8px;
+    color: rgba(250,247,242,0.4);
+  }
+  .mock-bar { height: 3px; border-radius: 2px; background: var(--rose); width: 60%; }
+  .mock-bar.short { width: 40%; background: rgba(250,247,242,0.15); }
+  .mock-thumb {
+    flex: 1;
+    background: var(--grad);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 24px;
+  }
+  .mock-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+  .mock-action-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* SECOND CARD - iPad style */
+  .mock-tablet {
+    width: 300px;
+    background: rgba(26,16,32,0.9);
+    border-radius: 16px;
+    border: 2px solid rgba(250,247,242,0.15);
+    padding: 16px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .mock-tablet-screen {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #0F0A18 0%, #1A1020 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .mock-video-full {
+    flex: 1;
+    background: linear-gradient(135deg, #4A32A0, #C13584);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+  }
+  .mock-video-meta {
+    background: rgba(0,0,0,0.5);
+    border-radius: 4px;
+    padding: 6px 8px;
+    width: 70%;
+  }
+  .mock-meta-bar {
+    height: 2px;
+    border-radius: 1px;
+    background: rgba(255,255,255,0.4);
+    margin-bottom: 4px;
+    width: 80%;
+  }
+  .mock-meta-bar.sm { width: 50%; background: rgba(255,255,255,0.2); }
+
+  /* PROCESS SECTION */
+  #process { padding: 120px 0; background: #0F0A18; }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid rgba(250,247,242,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .process-step {
+    padding: 40px 32px;
+    border-right: 1px solid rgba(250,247,242,0.08);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    cursor: none;
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step.visible { opacity: 1; }
+  .process-step::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0;
+    background: var(--grad);
+    transition: height 0.4s ease;
+    opacity: 0.08;
+  }
+  .process-step:hover::before { height: 100%; }
+  .process-step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(244,197,66,0.12);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .process-step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .process-step-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(250,247,242,0.45);
+  }
+
+  /* SKILLS */
+  #skills { padding: 120px 0; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .skill-category {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+  .skill-category.visible { opacity: 1; transform: translateY(0); }
+  .skill-cat-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .skill-cat-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(250,247,242,0.08);
+  }
+  .skill-bars { display: flex; flex-direction: column; gap: 16px; }
+  .skill-bar-item { display: flex; flex-direction: column; gap: 8px; }
+  .skill-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgba(250,247,242,0.7);
+  }
+  .skill-bar-label span:last-child { color: var(--gold); font-family: 'Playfair Display', serif; }
+  .skill-bar-track {
+    height: 2px;
+    background: rgba(250,247,242,0.08);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: var(--grad);
+    border-radius: 1px;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .skill-category.visible .skill-bar-fill { width: var(--pct); }
+
+  /* CONTACT */
+  #contact { padding: 120px 0; background: #0F0A18; }
+  .contact-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .contact-title em {
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--cream);
+  }
+  .contact-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(250,247,242,0.5);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(250,247,242,0.06);
+    font-size: 12px;
+    color: rgba(250,247,242,0.3);
+  }
+
+  /* SCROLL PROGRESS */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* FLOATING NAV DOTS */
+  .nav-dots {
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(250,247,242,0.2);
+    cursor: none;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .nav-dot::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(250,247,242,0.6);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .nav-dot:hover { background: var(--gold); transform: scale(1.5); }
+  .nav-dot:hover::after { opacity: 1; }
+  .nav-dot.active { background: var(--gold); transform: scale(1.3); }
+
+  /* REVEAL ANIM */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* GOOGLE CARD */
+  .project-hero-card.google-card .project-card-visual {
+    background: linear-gradient(135deg, #1A237E 0%, #4A148C 50%, #880E4F 100%);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 30px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 120px 30px 60px; }
+    .hero-right { display: none; }
+    .section-inner { padding: 0 30px; }
+    .project-hero-card { grid-template-columns: 1fr; }
+    .project-card-visual { height: 300px; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .nav-dots { display: none; }
+  }
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Ruby Gould</div>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Portfolio</a></li>
-            <li><a href="#experience">Experience</a></li>
-        </ul>
-    </nav>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
-    <header id="about">
-        <div class="container">
-            <h1>Hi, I'm Ruby Gould!</h1>
-            <p class="tagline">Senior Product Designer</p>
-            <div class="bio">
-                <p>I'm a Product Designer and winter person who loves to get outside and touch grass! [cite: 1]</p>
-                <p>Currently, I am on contract at <strong>Google</strong> as a Senior Product Designer on the <strong>Search Trust</strong> team, where I lead 0-1 design efforts for location experiences across Search and AI Mode[cite: 2, 6]. I specialize in advanced prototyping and design mentorship[cite: 3].</p>
-            </div>
+<nav id="nav">
+  <a href="#" class="nav-logo">Ruby <span>Gould</span></a>
+  <ul class="nav-links">
+    <li><a href="#timeline">Experience</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="nav-dots" id="navDots">
+  <div class="nav-dot active" data-section="hero" data-label="Home"></div>
+  <div class="nav-dot" data-section="timeline" data-label="Experience"></div>
+  <div class="nav-dot" data-section="projects" data-label="Work"></div>
+  <div class="nav-dot" data-section="process" data-label="Process"></div>
+  <div class="nav-dot" data-section="skills" data-label="Skills"></div>
+  <div class="nav-dot" data-section="contact" data-label="Contact"></div>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">Senior Product Designer</div>
+    <h1 class="hero-name">Ruby<br><em>Gould</em></h1>
+    <p class="hero-bio">
+      I design for scale. Currently on contract at <strong>Google Search Trust</strong>, shaping location experiences across Search and AI Mode. Previously at <strong>Meta</strong> for 4+ years across Feed, Video, and Creator platforms.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">$2B</div>
+        <div class="stat-label">Annual revenue impact</div>
+      </div>
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years at Meta</div>
+      </div>
+      <div>
+        <div class="stat-num">0→1</div>
+        <div class="stat-label">End-to-end launches</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <div class="hero-img-frame">
+        <div class="hero-img-placeholder">RG</div>
+      </div>
+      <div class="hero-img-deco"></div>
+      <div class="role-badge">
+        <div class="role-badge-title">Currently at</div>
+        <div class="role-badge-company">Google Search</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Career</div>
+        <h2 class="section-title">A decade of<br><em>experience</em></h2>
+      </div>
+    </div>
+    <div class="timeline-grid">
+      <div class="timeline-item left" data-delay="0">
+        <div class="timeline-year">2021</div>
+        <div class="timeline-company">Meta</div>
+        <div class="timeline-role">Facebook Home Team<br>Supporting Creator Monetization</div>
+      </div>
+      <div class="timeline-line">
+        <div class="timeline-dot" style="top: 60px;"></div>
+        <div class="timeline-dot" style="top: 180px;"></div>
+        <div class="timeline-dot" style="top: 300px;"></div>
+        <div class="timeline-dot" style="top: 420px;"></div>
+        <div class="timeline-dot" style="top: 540px;"></div>
+        <div class="timeline-dot" style="top: 660px;"></div>
+      </div>
+      <div class="timeline-item right" data-delay="0.1">
+        <div class="timeline-year">2022</div>
+        <div class="timeline-company">Meta</div>
+        <div class="timeline-role">Facebook Feed Team<br>Leading prototyping for Feed</div>
+      </div>
+      <div class="timeline-item left" data-delay="0.2">
+        <div class="timeline-year">2022–23</div>
+        <div class="timeline-company">Meta</div>
+        <div class="timeline-role">Facebook Design Shop<br>Partnering with UXR & Design Systems</div>
+      </div>
+      <div style="grid-column: 3;"></div>
+      <div class="timeline-item left" data-delay="0.3">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-company">Meta</div>
+        <div class="timeline-role">Facebook Enablement & Education<br>Leading design tokens work</div>
+      </div>
+      <div style="grid-column: 3;"></div>
+      <div style="grid-column: 1;"></div>
+      <div class="timeline-item right" data-delay="0.4">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-company">Meta</div>
+        <div class="timeline-role">Facebook Discovery<br>Leading video work on iPad — drove $2B annually</div>
+      </div>
+      <div class="timeline-item left" data-delay="0.5">
+        <div class="timeline-year">2024–25</div>
+        <div class="timeline-company">Google</div>
+        <div class="timeline-role">Senior Product Designer (Contract)<br>Search Trust — Location in Search & AI Mode</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Selected Work</div>
+        <h2 class="section-title">Projects that<br><em>shipped</em></h2>
+      </div>
+    </div>
+
+    <!-- PROJECT 1 -->
+    <div class="project-hero-card">
+      <div class="project-card-content">
+        <span class="project-num">01</span>
+        <div class="project-platform">Meta · Facebook · iPad</div>
+        <h3 class="project-title">Video on Facebook for iPad</h3>
+        <p class="project-desc">
+          Redesigned the video player on iPad from the ground up — from identifying a critical revenue-loss issue caused by content cropping to launching an MVP that solved it. Led competitive analysis, user research, engineering collaboration, and design iteration from 0 to launch.
+        </p>
+        <div class="project-metrics">
+          <div class="metric">
+            <div class="metric-val">$2B</div>
+            <div class="metric-lbl">Revenue annually</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">+1.5%</div>
+            <div class="metric-lbl">Watch time on Reels</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">+0.74%</div>
+            <div class="metric-lbl">Daily active users</div>
+          </div>
         </div>
-    </header>
-
-    <section id="projects">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="project-grid">
-                
-                <article class="project-card">
-                    <span class="impact-badge">$2B Annual Revenue Impact</span>
-                    <h3>Video on Facebook for iPad</h3>
-                    
-                    <div class="project-section">
-                        <h4>The Challenge</h4>
-                        <p>While mobile video experiences evolved rapidly, the iPad was overlooked, leading to significant content cropping issues[cite: 12, 15]. Media was set to fill the screen width, causing advertiser content to be cut off—a major revenue loss for the company[cite: 16, 23].</p>
-                    </div>
-
-                    <div class="project-section">
-                        <h4>My Role & Strategy</h4>
-                        <p>I led this project from conception to MVP launch[cite: 8]. I conducted an audit and competitive analysis of TikTok and YouTube Shorts to determine how to leverage the iPad's larger surface area[cite: 29, 33].</p>
-                        <ul>
-                            <li>Designed a "Northstar" vision featuring blurred previews ("peeking"), color-sampled backgrounds, and UI moved off-media to maximize engagement[cite: 73, 77, 79].</li>
-                            <li>Balanced engineering constraints by shipping an MVP that anchored UI to the bottom of the screen, ensuring a consistent scrolling experience regardless of content shape[cite: 85, 94].</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-section">
-                        <h4>Success Metrics</h4>
-                        <ul>
-                            <li>Generated <strong>$89M bi-weekly revenue increase</strong> ($2B annually)[cite: 103].</li>
-                            <li>Increased <strong>total watch time by 1.5%</strong> and Daily Active Users (DAU) by 0.74%[cite: 104].</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <span class="impact-badge">Targeting Q1 2026 Launch</span>
-                    <h3>Location in AI Mode (Google)</h3>
-                    
-                    <div class="project-section">
-                        <h4>The Problem</h4>
-                        <p>Google's experimental Gemini-powered "AI Mode" (AIM) launched without the robust location controls found in classical Search[cite: 105, 106]. Users with poor location data were 5.7% more likely to abandon AIM for regular Search[cite: 111].</p>
-                    </div>
-
-                    <div class="project-section">
-                        <h4>The Solution</h4>
-                        <p>I am leading the design effort to integrate durable location affordances directly into the conversational flow[cite: 107, 116].</p>
-                        <ul>
-                            <li>Developed a centralized location "hub" that combines a location picker with transparency about how data is sourced[cite: 146, 147].</li>
-                            <li>Designed a "multiple locations" solution for queries like "pizza in NY and NJ," allowing users to create custom geographic boundaries[cite: 213, 216].</li>
-                            <li>Implemented prominent prompts for Device Location (DL) to provide the most durable fix for future queries[cite: 198, 199].</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-section">
-                        <h4>Impact</h4>
-                        <p>The project has received leadership approval and is currently being built by engineering for a Q1 2026 launch[cite: 223].</p>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <span class="impact-badge">+173% Increase in CTR</span>
-                    <h3>iCloud Private Relay</h3>
-                    
-                    <div class="project-section">
-                        <h4>The Context</h4>
-                        <p>Apple's iCloud Private Relay (iPR) obscures IP addresses, causing Google Search to return irrelevant results (e.g., showing a user in New Hampshire results for Ohio)[cite: 235, 238].</p>
-                    </div>
-
-                    <div class="project-section">
-                        <h4>My Solution</h4>
-                        <p>I designed a callout card to inform users of potential inaccuracies and provide a direct path to "Use precise location"[cite: 232]. I tested multiple content variants to find the most effective messaging.</p>
-                    </div>
-
-                    <div class="project-section">
-                        <h4>Results</h4>
-                        <p>The solution increased the Click-Through Rate (CTR) for the "Use precise location" button from <strong>0.84% to 2.3%</strong>, a 173% improvement[cite: 234].</p>
-                    </div>
-                </article>
-
-            </div>
+        <div class="project-tags">
+          <span class="tag">0 → 1</span>
+          <span class="tag">Mobile / Tablet</span>
+          <span class="tag">Revenue Recovery</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">UXR</span>
         </div>
-    </section>
-
-    <section id="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="experience-list">
-                <div class="exp-item">
-                    <span class="exp-date">2024 — PRESENT</span>
-                    <h3 class="exp-title">Senior Product Designer | Google</h3>
-                    <p class="exp-desc">Leading feature releases on Search and AI Mode within the Search Trust team[cite: 6, 291].</p>
+      </div>
+      <div class="project-card-visual">
+        <div style="position:relative; display:flex; gap: 20px; z-index:1; align-items: center;">
+          <!-- Portrait iPad mockup -->
+          <div class="mock-tablet" style="width:200px;">
+            <div class="mock-tablet-screen" style="aspect-ratio: 3/4;">
+              <div class="mock-video-full" style="flex:1;">
+                <div style="position:absolute; top:12px; left:12px; right:12px; display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:9px; color:rgba(255,255,255,0.7);">‹ Video</div>
+                  <div style="display:flex; gap:8px;">
+                    <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);"></div>
+                  </div>
                 </div>
-                <div class="exp-item">
-                    <span class="exp-date">2021 — 2024</span>
-                    <h3 class="exp-title">Product Designer | Facebook</h3>
-                    <p class="exp-desc">Led work across Discovery (iPad Video), Feed prototyping, and Creator Monetization[cite: 4, 6, 290]. Led design tokens work for Enablement & Education[cite: 282].</p>
+                <div style="position:absolute; right:10px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:8px;">
+                  <div class="mock-action-icon"></div>
+                  <div class="mock-action-icon"></div>
+                  <div class="mock-action-icon"></div>
+                  <div class="mock-action-icon"></div>
                 </div>
+                <div class="mock-video-meta">
+                  <div class="mock-meta-bar"></div>
+                  <div class="mock-meta-bar sm"></div>
+                </div>
+              </div>
+              <div style="background:rgba(10,5,20,0.95); padding:8px 10px;">
+                <div style="width:100%; height:2px; background:rgba(244,197,66,0.6); border-radius:1px; margin-bottom:6px;"></div>
+                <div style="font-size:7px; color:rgba(255,255,255,0.3);">Add a comment</div>
+              </div>
             </div>
+          </div>
+          <!-- Landscape iPad mockup -->
+          <div class="mock-tablet" style="width:260px; transform: rotate(-2deg);">
+            <div class="mock-tablet-screen" style="aspect-ratio: 16/10;">
+              <div class="mock-video-full">
+                <div style="position:absolute; top:8px; left:10px; right:10px; display:flex; justify-content:space-between;">
+                  <div style="font-size:8px; color:rgba(255,255,255,0.7);">‹ Video</div>
+                  <div style="display:flex; gap:6px;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);"></div>
+                  </div>
+                </div>
+                <div style="position:absolute; right:8px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:6px;">
+                  <div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+                  <div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+                  <div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+                </div>
+                <div style="padding:6px 8px; background:rgba(0,0,0,0.5); border-radius:3px; width:55%;">
+                  <div style="height:1.5px; background:rgba(255,255,255,0.5); margin-bottom:3px; width:90%; border-radius:1px;"></div>
+                  <div style="height:1.5px; background:rgba(255,255,255,0.25); width:60%; border-radius:1px;"></div>
+                </div>
+              </div>
+              <div style="background:rgba(10,5,20,0.95); padding:5px 8px;">
+                <div style="width:100%; height:1.5px; background:rgba(244,197,66,0.5); border-radius:1px;"></div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+        <div style="position:absolute; top:20px; left:20px; z-index:2; background:rgba(244,197,66,0.15); border:1px solid rgba(244,197,66,0.3); padding:8px 14px; border-radius:2px; font-size:11px; color:var(--gold); font-weight:500; letter-spacing:0.1em;">LAUNCHED Q3 2024</div>
+      </div>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Ruby Gould. Specializing in large-scale 0-1 design efforts and advanced prototyping[cite: 3, 273].</p>
+    <!-- PROJECT 2 -->
+    <div class="project-hero-card google-card" style="direction: rtl;">
+      <div class="project-card-content" style="direction: ltr;">
+        <span class="project-num">02</span>
+        <div class="project-platform">Google · Search Trust</div>
+        <h3 class="project-title">Location in AI Mode</h3>
+        <p class="project-desc">
+          Integrating Google's location affordances into the newest AI feature in Search. Designing the experience that informs users about location settings to help them get better, more relevant Search results — across both mobile and desktop surfaces.
+        </p>
+        <div class="project-tags">
+          <span class="tag">AI Mode</span>
+          <span class="tag">Search</span>
+          <span class="tag">Mobile + Desktop</span>
+          <span class="tag">Trust & Safety</span>
+          <span class="tag">Location UX</span>
         </div>
-    </footer>
+        <div style="margin-top: 8px; padding: 20px; background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.08); border-radius: 2px;">
+          <div style="font-size: 11px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px;">Design Challenge</div>
+          <div style="font-size: 14px; font-weight: 300; line-height: 1.65; color: rgba(250,247,242,0.55);">How do you communicate location trust in an AI-first search paradigm without disrupting the core search experience?</div>
+        </div>
+      </div>
+      <div class="project-card-visual" style="direction: ltr; background: linear-gradient(135deg, #0D1B6E 0%, #3A0D6E 50%, #6E0D4A 100%);">
+        <div style="z-index:1; position:relative; display:flex; gap:16px; flex-direction:column; align-items:center;">
+          <!-- Search bar mockup -->
+          <div style="width:280px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:24px; padding:12px 20px; display:flex; align-items:center; gap:10px;">
+            <div style="width:14px; height:14px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.4); flex-shrink:0;"></div>
+            <div style="flex:1; height:8px; background:rgba(255,255,255,0.2); border-radius:4px;"></div>
+            <div style="width:14px; height:14px; border-radius:50%; background:rgba(244,197,66,0.5); flex-shrink:0;"></div>
+          </div>
+          <!-- AI result card -->
+          <div style="width:280px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px; backdrop-filter:blur(10px);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+              <div style="width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg, #4285F4, #9C27B0);"></div>
+              <div style="font-size:10px; color:rgba(255,255,255,0.6); letter-spacing:0.05em;">AI Overview</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:5px; margin-bottom:12px;">
+              <div style="height:6px; background:rgba(255,255,255,0.2); border-radius:3px; width:90%;"></div>
+              <div style="height:6px; background:rgba(255,255,255,0.15); border-radius:3px; width:75%;"></div>
+              <div style="height:6px; background:rgba(255,255,255,0.15); border-radius:3px; width:82%;"></div>
+            </div>
+            <!-- Location permission prompt -->
+            <div style="background:rgba(244,197,66,0.1); border:1px solid rgba(244,197,66,0.3); border-radius:8px; padding:10px 12px; display:flex; align-items:center; gap:10px;">
+              <div style="font-size:16px;">📍</div>
+              <div>
+                <div style="font-size:9px; font-weight:500; color:rgba(255,255,255,0.8); margin-bottom:2px;">Enable location for better results</div>
+                <div style="font-size:8px; color:rgba(255,255,255,0.4);">Showing results for New York, NY</div>
+              </div>
+            </div>
+          </div>
+          <!-- iCloud Private Relay card -->
+          <div style="width:280px; background:rgba(255,69,58,0.08); border:1px solid rgba(255,69,58,0.2); border-radius:8px; padding:12px 14px; display:flex; align-items:center; gap:10px;">
+            <div style="font-size:14px;">🔒</div>
+            <div>
+              <div style="font-size:9px; font-weight:500; color:rgba(255,255,255,0.7); margin-bottom:2px;">iCloud Private Relay is on</div>
+              <div style="font-size:8px; color:rgba(255,255,255,0.35);">Your location may be less precise</div>
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute; top:20px; right:20px; z-index:2; background:rgba(66,133,244,0.15); border:1px solid rgba(66,133,244,0.3); padding:8px 14px; border-radius:2px; font-size:11px; color:#7BB3F7; font-weight:500; letter-spacing:0.1em;">IN PROGRESS 2025</div>
+      </div>
+    </div>
 
-    <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+  </div>
+</section>
 
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.8s ease-out';
-            observer.observe(card);
-        });
-    </script>
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">How I Work</div>
+        <h2 class="section-title">Design <em>process</em></h2>
+      </div>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-step-num">01</div>
+        <div class="process-step-title">Discover</div>
+        <div class="process-step-desc">Deep dive into user research, data signals, and competitive landscapes to understand the full problem space before touching a frame.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">02</div>
+        <div class="process-step-title">Define</div>
+        <div class="process-step-desc">Synthesize findings into clear design briefs. Align stakeholders on success metrics and prioritize ruthlessly for impact.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">03</div>
+        <div class="process-step-title">Prototype</div>
+        <div class="process-step-desc">Build high-fidelity interactive prototypes to validate direction quickly. Advanced prototyping is a core specialization.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">04</div>
+        <div class="process-step-title">Test</div>
+        <div class="process-step-desc">Run smoke tests, concept validation, and A/B experiments. Let data and users shape the final design direction.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">05</div>
+        <div class="process-step-title">Ship</div>
+        <div class="process-step-desc">Hands-on partnership with engineering to ensure quality at launch. No hand-off-and-disappear — quality is owned end-to-end.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title">Specialized <em>skills</em></h2>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <div class="skill-cat-title">Design Craft</div>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Product Design (0→1)</span><span>97</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 97%;"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Advanced Prototyping</span><span>95</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 95%;"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Design Systems</span><span>90</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 90%;"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Mobile / Tablet / Desktop</span><span>92</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 92%;"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-category" style="transition-delay: 0.15s;">
+        <div class="skill-cat-title">Strategy & Leadership</div>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Cross-functional Leadership</span><span>93</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 93%;"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Design Mentorship</span><span>90</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 90%;"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>User Research & Testing</span><span>88</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 88%;"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Stakeholder Alignment</span><span>91</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--pct: 91%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner reveal">
+      <h2 class="contact-title">Let's build<br>something <em>great</em></h2>
+      <p class="contact-sub">
+        Looking for a senior product designer to lead large-scale, 0→1 efforts? Bring specialized prototyping expertise and design mentorship to your team.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:ruby@example.com" class="btn btn-primary">Send a Message</a>
+        <a href="https://linkedin.com" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://dribbble.com" target="_blank" class="btn btn-ghost">Dribbble</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 Ruby Gould — Product Designer</div>
+  <div>Currently: Google Search Trust · Open to opportunities</div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; });
+  });
+
+  // Scroll progress
+  const prog = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const s = document.documentElement.scrollTop;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (s / h * 100) + '%';
+    // Nav shrink
+    document.getElementById('nav').classList.toggle('scrolled', s > 60);
+  });
+
+  // Intersection Observer for reveals
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .project-hero-card, .process-step, .skill-category, .timeline-item').forEach(el => {
+    revealObs.observe(el);
+  });
+
+  // Process steps stagger
+  document.querySelectorAll('.process-step').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+
+  // Nav dots
+  const dots = document.querySelectorAll('.nav-dot');
+  const sections = ['hero','timeline','projects','process','skills','contact'];
+  const secEls = sections.map(s => document.getElementById(s));
+  
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      secEls[i].scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  function updateDots() {
+    const scrollY = window.scrollY + window.innerHeight / 2;
+    let active = 0;
+    secEls.forEach((el, i) => {
+      if (el && el.offsetTop <= scrollY) active = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  }
+  window.addEventListener('scroll', updateDots);
+  updateDots();
+</script>
 </body>
 </html>
