@@ -111,8 +111,12 @@ section:target {
         h3 { font-size: 2.2rem; margin: 0 0 5px; }
         .project-meta { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 20px; }
 
-        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
-        .details-col h4 { font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; margin-bottom: 10px; }
+.details-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px; 
+    margin-bottom: 30px; /* Added for better spacing */
+}        .details-col h4 { font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 5px; margin-bottom: 10px; }
         .details-col p, .details-col li { color: var(--text-secondary); font-size: 0.95rem; }
 
         .case-study-link {
@@ -170,14 +174,49 @@ section:target {
         footer { padding: 80px 0; text-align: center; opacity: 0.6; }
 
         @media (max-width: 900px) {
-            header { flex-direction: column-reverse; text-align: center; gap: 40px; }
-            h1 { font-size: 3rem; }
-            .project-card { grid-template-columns: 1fr; }
-            .project-image-container { min-height: 300px; padding: 40px; }
-            .experience-block { margin-bottom: 40px !important; }
-            .exp-header { flex-direction: column; }
-            .contact-links { flex-direction: column; gap: 20px; }
-        }
+    header { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        gap: 40px; 
+    }
+    
+    h1 { font-size: 3rem; }
+
+    /* Stacks the Image and Content */
+    .project-card { 
+        grid-template-columns: 1fr; 
+    }
+
+    /* Stacks the Problem and Results boxes vertically */
+    .details-grid { 
+        grid-template-columns: 1fr; 
+        gap: 24px; 
+    }
+
+    .project-content { 
+        padding: 40px 24px; 
+    }
+
+    /* Puts the image on top of the text for a better mobile flow */
+    .project-image-container { 
+        min-height: 300px; 
+        padding: 40px 20px; 
+        order: -1; 
+    }
+
+    .experience-block { 
+        margin-bottom: 40px !important; 
+    }
+
+    .exp-header { 
+        flex-direction: column; 
+    }
+
+    .contact-links { 
+        flex-direction: column; 
+        gap: 20px; 
+    }
+}
     </style>
 </head>
 <body>
