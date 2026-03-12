@@ -171,6 +171,22 @@ section:target {
         .contact-link { color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
         .contact-link:hover { border-color: white; }
 
+        .nav-resume {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease !important;
+            opacity: 1 !important;
+            font-weight: 600;
+        }
+
+        .nav-resume:hover {
+            background: white !important;
+            color: var(--gradient-start) !important;
+            transform: translateY(-2px);
+        }
+
         footer { padding: 80px 0; text-align: center; opacity: 0.6; }
 
         @media (max-width: 900px) {
@@ -216,6 +232,7 @@ section:target {
         flex-direction: column; 
         gap: 20px; 
     }
+            
 }
     </style>
 </head>
@@ -227,7 +244,7 @@ section:target {
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Portfolio</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="./RubyGouldResume2026.pdf" target="_blank">Resume</a></li>
+         <li><a href="RubyGouldResume2026.pdf" target="_blank" class="nav-resume">Resume</a></li>
         </ul>
     </nav>
 
