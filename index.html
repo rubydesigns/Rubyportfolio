@@ -137,13 +137,12 @@ section:target {
         }
 
         .experience-block {
-            background: var(--card-bg);
-            backdrop-filter: var(--card-blur);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 40px;
-            margin-bottom: 80px !important;
-        }
+    background: none;
+    backdrop-filter: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 60px !important; /* Slightly reduced margin for better flow */
+}
         .experience-block:last-child { margin-bottom: 0 !important; }
 
         .exp-header {
@@ -153,14 +152,15 @@ section:target {
         .exp-title-group h4 { margin: 0; font-size: 1.6rem; font-weight: 600; }
         .exp-company { font-size: 1.1rem; color: var(--text-secondary); margin-top: 4px; }
         .exp-date {
-            background: rgba(255, 255, 255, 0.15); padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.1); padding: 6px 14px;
             border-radius: 10px; font-size: 0.85rem; font-weight: 600;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .exp-summary {
-            color: var(--text-secondary); font-size: 1.05rem;
-            padding-left: 20px; border-left: 2px solid rgba(255, 255, 255, 0.2);
-        }
+       .exp-summary {
+    color: var(--text-secondary); font-size: 1.1rem; /* Slightly larger for readability */
+    padding-left: 0; border-left: none;
+    max-width: 800px; /* Constrained width to keep line lengths comfortable */
+}
 
         .contact-card {
             background: var(--card-bg); backdrop-filter: var(--card-blur);
