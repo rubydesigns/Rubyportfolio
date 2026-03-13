@@ -57,7 +57,7 @@ section:target {
 }
 
         nav {
-            padding: 24px 40px;
+           padding: 32px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -74,8 +74,11 @@ section:target {
     color: #ffffff;
     text-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-        .logo { font-family: 'Fugaz One', cursive; font-weight: 600; font-size: 1.2rem; color: white; text-decoration: none; }
-        nav ul { display: flex; list-style: none; gap: 32px; margin: 0; }
+.logo img {
+    height: 40px; 
+    width: auto;
+    display: block;
+}        nav ul { display: flex; list-style: none; gap: 32px; margin: 0; }
         nav a { text-decoration: none; color: white; font-weight: 500; font-size: 0.95rem; opacity: 0.8; transition: opacity 0.2s; }
         nav a:hover { opacity: 1; }
 
@@ -204,12 +207,11 @@ section:target {
     
     h1 { font-size: 3rem; }
 
-    /* Stacks the Image and Content */
+
     .project-card { 
         grid-template-columns: 1fr; 
     }
 
-    /* Stacks the Problem and Results boxes vertically */
     .details-grid { 
         grid-template-columns: 1fr; 
         gap: 24px; 
@@ -219,7 +221,6 @@ section:target {
         padding: 40px 24px; 
     }
 
-    /* Puts the image on top of the text for a better mobile flow */
     .project-image-container { 
         min-height: 300px; 
         padding: 40px 20px; 
@@ -239,8 +240,8 @@ section:target {
         gap: 20px; 
     }
 
-            nav ul {
-        gap: 16px; /* Reduced gap between links for tighter screens */
+           nav ul {
+        gap: 16px;
         padding: 0;
         justify-content: center;
         width: 100%;
@@ -256,9 +257,13 @@ section:target {
         white-space: nowrap; /* Prevents "Resume" from wrapping */
     }
     nav {
-        padding: 16px 20px; /* Reduces side padding on mobile */
+        
+        padding: 20px; /* Reduces side padding on mobile */
         flex-direction: column; /* Stacks logo above the links */
         gap: 12px;
+    }
+            .logo img {
+        height: 32px; /* Slightly smaller logo for mobile screens */
     }
             
 }
@@ -267,7 +272,7 @@ section:target {
 <body>
 
     <nav>
-        <a href="#" class="logo">Ruby Gould</a>
+       <a href="#" class="logo"><img src="./images/logo.png" alt="Ruby Gould Logo"></a>
         <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Portfolio</a></li>
