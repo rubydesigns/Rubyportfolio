@@ -197,6 +197,102 @@ section:target {
             color: var(--gradient-start) !important;
             transform: translateY(-2px);
         }
+        
+        .update-banner {
+    background: var(--card-bg);
+    backdrop-filter: var(--card-blur);
+    border: 1px solid var(--card-border);
+    padding: 12px 24px;
+    border-radius: 100px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.update-banner:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.update-badge {
+    background: white;
+    color: var(--gradient-start);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* Updated Scrollable Modal Styling */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(12px);
+    
+    /* THE FIX: Allow the overlay to scroll if the content is too tall */
+    overflow-y: auto; 
+    padding: 40px 0; /* Adds breathing room at top/bottom when scrolling */
+}
+
+.modal-content {
+    background: var(--card-bg);
+    backdrop-filter: var(--card-blur);
+    border: 1px solid var(--card-border);
+    border-radius: 40px;
+    
+    /* Centering the content within the scrollable area */
+    margin: 0 auto; 
+    width: 90%;
+    max-width: 700px;
+    padding: 60px;
+    
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    color: var(--text-main);
+    
+    /* Animation remains the same */
+    animation: modalSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Prevent the background body from scrolling when modal is open (Optional but Pro) */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Refined Close Button */
+.close-modal {
+    position: absolute;
+    right: 30px; 
+    top: 25px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--card-border);
+}
+
+.close-modal:hover {
+    background: white;
+    color: var(--gradient-start);
+    transform: rotate(90deg);
+}
 
         footer { padding: 80px 0; text-align: center; opacity: 0.6; }
 
@@ -208,6 +304,14 @@ section:target {
     }
     
     h1 { font-size: 3rem; }
+    .modal-content {
+        padding: 40px 24px;
+        margin: 5vh auto;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
 
 
     .project-card { 
@@ -282,6 +386,39 @@ section:target {
          <li><a href="RubyGouldResume2026.pdf" target="_blank" class="nav-resume">Resume</a></li>
         </ul>
     </nav>
+    
+    <div class="update-banner" id="updateTrigger">
+    <span class="update-badge">New</span>
+    <p>Help me redesign my personal logo using AI!</p>
+</div>
+
+<div id="updateModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        
+       
+
+        <h2>Personal logo design</h2>
+        <p>I recently sought to create a new personal logo for my portfolio site, and decided to test the abilities of different Generative AI models to help me come up with new visuals.
+    </p>
+    <p>My personal brand is based on the 💥 emoji, representing the exciting spark of ideas I bring to the design teams I've been on. 
+    </p>
+     <p>I instructed several Generative AI models (Gemini, Claude, ChatGPT and Canva's built-in AI) to create a logo using my name based on the spark emoji, and here's are some of the results I received:
+    </p>
+        
+         <div class="modal-image-container">
+            <img src="./images/strategy-preview.png" alt="Strategy Preview">
+        </div>
+         <div class="modal-image-container">
+            <img src="./images/strategy-preview.png" alt="Strategy Preview">
+        </div>
+         <div class="modal-image-container">
+            <img src="./images/strategy-preview.png" alt="Strategy Preview">
+        </div>
+        <p>Needless to say, I went on to design my own logo pixel by pixel. This was a fun exercise in discovering that while AI has been super useful for administrative tasks within design, personal taste and a human eye for design are still extremely valuable in the execution of design work.
+    </p>
+    </div>
+</div>
 
     <div class="container">
         <header id="about">
@@ -462,5 +599,28 @@ section:target {
             <p>Ruby Gould &copy; 2026 • Coded by me on GitHub < 3</p>
         </footer>
     </div>
+    
+    <script>
+    const modal = document.getElementById("updateModal");
+    const btn = document.getElementById("updateTrigger");
+    const span = document.getElementsByClassName("close-modal")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+        document.body.classList.add("modal-open"); // Lock background
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open"); // Unlock background
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            document.body.classList.remove("modal-open"); // Unlock background
+        }
+    }
+</script>
 </body>
 </html>
