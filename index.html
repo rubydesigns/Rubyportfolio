@@ -204,13 +204,17 @@ section:target {
     border: 1px solid var(--card-border);
     padding: 12px 24px;
     border-radius: 100px;
-    margin-top: 40px;
-    display: flex;
+    
+    /* THE FIX: Spacing from the top and the edges */
+    margin: 40px 0 0 0; /* 40px top margin, 0 for sides to stay in container */
+    display: inline-flex; /* Ensures it only takes up as much width as its content */
     align-items: center;
     gap: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: fit-content;
+    
+    /* Optional: Ensures it doesn't hit the screen edge on very small phones */
+    max-width: calc(100% - 20px); 
 }
 
 .update-banner:hover {
@@ -393,6 +397,12 @@ body.modal-open {
     }
             .logo img {
         height: 100px; 
+    }
+
+            .update-banner {
+        margin-top: 20px;
+        padding: 10px 18px;
+        font-size: 0.9rem; /* Slightly smaller text for mobile */
     }
             
 }
